@@ -1,0 +1,6 @@
+pycryptodome>=3.23.0
+secretstorage>=3.5.0; sys_platform == 'linux'
+dbus-python>=1.4.0; sys_platform == 'linux'
+gemini-webapi>=2.0.0
+fastapi>=0.139.0
+uvicorn>=0.51.0

@@ -1,0 +1,7 @@
+.venv
+.python-version
+config.json
+Model.md
+Structure.md
+__pycache__/
+*.pyc

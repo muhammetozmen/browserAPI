@@ -1,0 +1,165 @@
+{
+  "chrome": {
+    "windows": [
+      "~/AppData/Local/Google/Chrome/User Data/Default/Network/Cookies",
+      "~/AppData/Local/Google/Chrome/User Data/Profile */Network/Cookies",
+      "~/AppData/Local/Google/Chrome/User Data/Default/Cookies",
+      "~/AppData/Local/Google/Chrome/User Data/Profile */Cookies"
+    ],
+    "linux": [
+      "/run/user/*/psd/*chrome*/Cookies",
+      "/run/user/*/psd/*chrome*/Network/Cookies",
+      "~/.config/google-chrome*/Default/Cookies",
+      "~/.config/google-chrome*/Profile */Cookies",
+      "~/.var/app/com.google.Chrome/config/google-chrome*/Default/Cookies",
+      "~/.var/app/com.google.Chrome/config/google-chrome*/Profile */Cookies"
+    ],
+    "darwin": [
+      "~/Library/Application Support/Google/Chrome/Default/Cookies",
+      "~/Library/Application Support/Google/Chrome/Profile */Cookies"
+    ]
+  },
+  "chromium": {
+    "windows": [
+      "~/AppData/Local/Chromium/User Data/Default/Network/Cookies",
+      "~/AppData/Local/Chromium/User Data/Profile */Network/Cookies",
+      "~/AppData/Local/Chromium/User Data/Default/Cookies"
+    ],
+    "linux": [
+      "/run/user/*/psd/*chromium*/Cookies",
+      "/run/user/*/psd/*chromium*/Network/Cookies",
+      "~/.config/chromium*/Default/Cookies",
+      "~/.config/chromium*/Profile */Cookies",
+      "~/snap/chromium*/common/chromium/Default/Cookies",
+      "~/snap/chromium*/common/chromium/Profile */Cookies",
+      "~/.var/app/org.chromium.Chromium/config/chromium*/Default/Cookies",
+      "~/.var/app/org.chromium.Chromium/config/chromium*/Profile */Cookies"
+    ],
+    "darwin": [
+      "~/Library/Application Support/Chromium/Default/Cookies",
+      "~/Library/Application Support/Chromium/Profile */Cookies"
+    ]
+  },
+  "firefox": {
+    "windows": [
+      "~/AppData/Roaming/Mozilla/Firefox/Profiles/*/cookies.sqlite"
+    ],
+    "linux": [
+      "/run/user/*/psd/*firefox*/cookies.sqlite",
+      "~/.mozilla/firefox/*/cookies.sqlite",
+      "~/.config/mozilla/firefox/*/cookies.sqlite",
+      "~/snap/firefox/common/.mozilla/firefox/*/cookies.sqlite",
+      "~/snap/firefox/common/.mozilla/firefox/profiles/*/cookies.sqlite",
+      "~/snap/firefox/current/.mozilla/firefox/*/cookies.sqlite",
+      "~/.var/app/org.mozilla.firefox/.mozilla/firefox/*/cookies.sqlite"
+    ],
+    "darwin": [
+      "~/Library/Application Support/Firefox/Profiles/*/cookies.sqlite"
+    ]
+  },
+  "edge": {
+    "windows": [
+      "~/AppData/Local/Microsoft/Edge/User Data/Default/Network/Cookies",
+      "~/AppData/Local/Microsoft/Edge/User Data/Profile */Network/Cookies",
+      "~/AppData/Local/Microsoft/Edge/User Data/Default/Cookies"
+    ],
+    "linux": [
+      "~/.config/microsoft-edge*/Default/Cookies",
+      "~/.config/microsoft-edge*/Profile */Cookies",
+      "~/.config/microsoft-edge-dev*/Default/Cookies",
+      "~/.config/microsoft-edge-dev*/Profile */Cookies",
+      "~/.var/app/com.microsoft.Edge/config/microsoft-edge*/Default/Cookies",
+      "~/.var/app/com.microsoft.Edge/config/microsoft-edge*/Profile */Cookies"
+    ],
+    "darwin": [
+      "~/Library/Application Support/Microsoft Edge/Default/Cookies",
+      "~/Library/Application Support/Microsoft Edge/Profile */Cookies"
+    ]
+  },
+  "brave": {
+    "windows": [
+      "~/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Network/Cookies",
+      "~/AppData/Local/BraveSoftware/Brave-Browser/User Data/Profile */Network/Cookies",
+      "~/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Cookies"
+    ],
+    "linux": [
+      "/run/user/*/psd/*brave*/Cookies",
+      "/run/user/*/psd/*brave*/Network/Cookies",
+      "~/.config/BraveSoftware/Brave-*/Default/Cookies",
+      "~/.config/BraveSoftware/Brave-*/Profile */Cookies",
+      "~/snap/brave*/common/.config/BraveSoftware/Brave-*/Default/Cookies",
+      "~/snap/brave*/common/.config/BraveSoftware/Brave-*/Profile */Cookies",
+      "~/.var/app/com.brave.Browser/config/BraveSoftware/Brave-*/Default/Cookies",
+      "~/.var/app/com.brave.Browser/config/BraveSoftware/Brave-*/Profile */Cookies"
+    ],
+    "darwin": [
+      "~/Library/Application Support/BraveSoftware/Brave-Browser/Default/Cookies",
+      "~/Library/Application Support/BraveSoftware/Brave-Browser/Profile */Cookies"
+    ]
+  },
+  "opera": {
+    "windows": [
+      "~/AppData/Roaming/Opera Software/Opera Stable/Cookies",
+      "~/AppData/Roaming/Opera Software/Opera Stable/Network/Cookies",
+      "~/AppData/Local/Opera Software/Opera Stable/Cookies"
+    ],
+    "linux": [
+      "~/.config/opera*/Cookies",
+      "~/.config/opera*/Network/Cookies",
+      "~/snap/opera*/common/.config/opera*/Cookies",
+      "~/.var/app/com.opera.Opera/config/opera*/Cookies"
+    ],
+    "darwin": [
+      "~/Library/Application Support/com.operasoftware.Opera/Cookies"
+    ]
+  },
+  "vivaldi": {
+    "windows": [
+      "~/AppData/Local/Vivaldi/User Data/Default/Network/Cookies",
+      "~/AppData/Local/Vivaldi/User Data/Profile */Network/Cookies",
+      "~/AppData/Local/Vivaldi/User Data/Default/Cookies"
+    ],
+    "linux": [
+      "~/.config/vivaldi*/Default/Cookies",
+      "~/.config/vivaldi*/Profile */Cookies",
+      "~/.var/app/com.vivaldi.Vivaldi/config/vivaldi*/Default/Cookies",
+      "~/.var/app/com.vivaldi.Vivaldi/config/vivaldi*/Profile */Cookies"
+    ],
+    "darwin": [
+      "~/Library/Application Support/Vivaldi/Default/Cookies",
+      "~/Library/Application Support/Vivaldi/Profile */Cookies"
+    ]
+  },
+  "librewolf": {
+    "windows": [
+      "~/AppData/Roaming/LibreWolf/Profiles/*/cookies.sqlite"
+    ],
+    "linux": [
+      "~/.librewolf/*/cookies.sqlite",
+      "~/.config/librewolf*/Profiles/*/cookies.sqlite",
+      "~/.var/app/io.gitlab.librewolf-community/.librewolf/*/cookies.sqlite"
+    ],
+    "darwin": [
+      "~/Library/Application Support/LibreWolf/Profiles/*/cookies.sqlite"
+    ]
+  },
+  "waterfox": {
+    "windows": [
+      "~/AppData/Roaming/Waterfox/Profiles/*/cookies.sqlite"
+    ],
+    "linux": [
+      "~/.waterfox/*/cookies.sqlite",
+      "~/.config/waterfox*/Profiles/*/cookies.sqlite"
+    ],
+    "darwin": [
+      "~/Library/Application Support/Waterfox/Profiles/*/cookies.sqlite"
+    ]
+  },
+  "safari": {
+    "windows": [],
+    "linux": [],
+    "darwin": [
+      "~/Library/Cookies/Cookies.binarycookies"
+    ]
+  }
+}
