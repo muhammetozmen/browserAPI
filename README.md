@@ -50,13 +50,13 @@ python -m venv .venv # For windows
 ```bash
 ./lin_run.sh # For linux
 ./mac_run.sh # For mac
-./bat_run.sh # For windows
+./win_run.bat # For windows
 ```
 
 ***Alternatively*** you can run app with:
 ```bash
 .venv/bin/python3 src/main.py #For linux and mac
-.venv\Scripts\python src\main.py #For windows
+.venv/Scripts/python src/main.py #For windows
 ```
 
 That's all. CLI should be launched now.
