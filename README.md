@@ -67,6 +67,7 @@ After setting the language and accepting the legal disclaimer and user consent, 
 
 If it can't find your browser path automatically, you have to enter it manually. 
 You can share your path with me there, so I can include it in the next update: https://github.com/muhammetozmen/browserAPI/issues/1
+
 You can change the host address to something else. If you are going to use it locally, you can just press Enter to set it to the default address. The same goes for the host.
 You can change your models. There will be three models to select: the weak, default, and pro model. I included this system for the next updates that might add new models, so you can limit your model numbers and use only certain models with this API. For now, you can just press Enter and select what's picked by default.
 You can change your log saves and cookie refresh intervals too. I don't suggest doing that.
