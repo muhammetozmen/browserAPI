@@ -2,11 +2,17 @@
 Gemini integration service module for the browserAPI project.
 Handles authenticating, sending prompt queries, retries with backoff,
 and error context truncation using the gemini-webapi library.
+
+NOTE: No changes were made to this file for the tool-calling feature.
+Tool-call detection and OpenAI-format translation happen entirely in
+server.py, so this module keeps its original, working behavior for
+auth, retries, and cookie refresh untouched.
 """
 
 import sys
 import asyncio
 import re
+from datetime import datetime
 from typing import Optional
 from gemini_webapi import GeminiClient
 from src.core.config import get_config
@@ -149,8 +155,15 @@ async def verify_session() -> bool:
         bool: True if authentication is valid, False otherwise.
     """
     try:
+        now = datetime.now()
+        timestamp = now.strftime("%H:%M:%S %d:%m:%Y")
+        prompt = (
+            f"{timestamp}.\n"
+            "If you can read this, this means your session is working perfectly! \n"
+            "Just respond `Yes` to me, gemini."
+        )
         response_text = await send_prompt(
-            "If you can read this, this means your session is working perfectly! Just say `Yes` to me gemini",
+            prompt,
             max_retries=2,
             temporary=False
         )

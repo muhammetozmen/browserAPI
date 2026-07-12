@@ -85,7 +85,7 @@ def display_banner() -> None:
     print(border)
     for line in banner_lines:
         print(f"{theme_color}{line}{reset}")
-    print(f"\033[90mversion:1.0                             by {author_link}{reset}")
+    print(f"\033[90mversion:1.1                             by {author_link}{reset}")
     print(border)
     
     # Print bold subtitle and gray/thin warning helper text using standard ANSI escape codes
