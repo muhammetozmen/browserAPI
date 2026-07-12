@@ -4,6 +4,7 @@
   # 🌐 Browser API
   
   **A CLI that bridges your browser's Gemini session to a local OpenAI-compatible API, no API key required.**
+  
   Read about it at: www.muhammetozmen.org/projects/project-browserAPI/
   
   [![GitHub Stars](https://img.shields.io/github/stars/muhammetozmen/browserAPI?style=for-the-badge&logo=github&color=FFDD00&labelColor=202020)](https://github.com/muhammetozmen/browserAPI/stargazers)
