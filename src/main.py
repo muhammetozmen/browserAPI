@@ -419,9 +419,9 @@ def run_setup_wizard() -> None:
         elif step == 4:
             # Step 4: Select Gemini Models (Weak -> Default -> Strong)
             model_options = [
-                t("gemini-2.0-flash-lite (Faster, lightweight)", "gemini-2.0-flash-lite (Daha hızlı, hafif)"),
-                t("gemini-2.0-flash (Balanced performance)", "gemini-2.0-flash (Dengeli performans)"),
-                t("gemini-1.5-pro (High intelligence, complex tasks)", "gemini-1.5-pro (Yüksek zeka, karmaşık görevler)")
+                t("gemini-3.1-flash-lite (Faster, lightweight)", "gemini-2.0-flash-lite (Daha hızlı, hafif)"),
+                t("gemini-3.5-flash (Balanced performance)", "gemini-2.0-flash (Dengeli performans)"),
+                t("gemini-3.1-pro (High intelligence, complex tasks)", "gemini-1.5-pro (Yüksek zeka, karmaşık görevler)")
             ]
             model_keys = ["flash-lite", "flash", "pro"]
             

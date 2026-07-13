@@ -36,7 +36,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, StreamingResponse
 from pydantic import BaseModel
 import uvicorn
-
+from fastapi.middleware.cors import CORSMiddleware
 from src.core.config import get_config
 from src.core.cookies import get_cookies
 from src.services.gemini_io import verify_session, send_prompt, get_gemini_client
@@ -60,7 +60,7 @@ async def cookie_sync_loop():
         try:
             interval = get_config("meta", "cookie_update") or 600
             await asyncio.sleep(interval)
-            
+
             print(" [>] " + t("Background Task: Synchronizing browser session cookies...", "Arka Plan Görevi: Tarayıcı oturum çerezleri eşitleniyor..."))
             cookies = get_cookies()
             if cookies:
@@ -98,7 +98,7 @@ async def lifespan(app: FastAPI):
             "browserAPI Gateway",
             t("Warning: No session cookies found. Please run the CLI Setup Wizard.", "Uyarı: Oturum çerezi bulunamadı. Lütfen CLI Kurulum Sihirbazını çalıştırın.")
         )
-        
+
     # Start the periodic background sync task
     sync_task = asyncio.create_task(cookie_sync_loop())
     yield
@@ -114,6 +114,14 @@ app = FastAPI(
     description="Local HTTP API proxy for Google Gemini Web Client",
     version="1.0",
     lifespan=lifespan
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Resolve project-local scratch directory for temporary multimodal files
@@ -133,14 +141,14 @@ def parse_multimodal_message(content: Union[str, List[Dict[str, Any]], None]) ->
 
     if isinstance(content, str):
         return content, []
-        
+
     text_parts = []
     temp_filepaths = []
-    
+
     # Ensure scratch directory exists
     if not os.path.exists(SCRATCH_DIR):
         os.makedirs(SCRATCH_DIR, exist_ok=True)
-        
+
     for part in content:
         if not isinstance(part, dict):
             continue
@@ -155,13 +163,13 @@ def parse_multimodal_message(content: Union[str, List[Dict[str, Any]], None]) ->
                 url = image_url_obj.get("url", "")
             else:
                 url = str(image_url_obj) if image_url_obj else ""
-                
+
             if not url:
                 continue
-                
+
             file_bytes = None
             ext = ".png"
-            
+
             if url.startswith("data:"):
                 try:
                     # Handle base64 data URLs: data:image/png;base64,...
@@ -171,7 +179,7 @@ def parse_multimodal_message(content: Union[str, List[Dict[str, Any]], None]) ->
                         parts = header.split(";")
                         if parts[0].startswith("data:"):
                             mime_type = parts[0][5:]
-                    
+
                     ext = mimetypes.guess_extension(mime_type) or ".png"
                     file_bytes = base64.b64decode(encoded)
                 except Exception as e:
@@ -189,7 +197,7 @@ def parse_multimodal_message(content: Union[str, List[Dict[str, Any]], None]) ->
                         ext = mimetypes.guess_extension(content_type) or ".png"
                 except Exception as e:
                     print(f" [-] Failed to fetch image from URL {url}: {e}")
-            
+
             if file_bytes:
                 try:
                     # Save bytes to a project-local temporary file
@@ -199,7 +207,7 @@ def parse_multimodal_message(content: Union[str, List[Dict[str, Any]], None]) ->
                     temp_filepaths.append(temp_path)
                 except Exception as e:
                     print(f" [-] Failed to write temporary image file: {e}")
-                    
+
     return "\n".join(text_parts), temp_filepaths
 
 class QueryRequest(BaseModel):
@@ -449,7 +457,7 @@ async def generate(request: QueryRequest):
     """
     if not request.prompt.strip():
         raise HTTPException(status_code=400, detail="Prompt cannot be empty.")
-        
+
     try:
         # Run query through the integration service with built-in retries
         response_text = await send_prompt(request.prompt, model_type=request.model_type)
@@ -486,10 +494,10 @@ async def handle_chat_completion(request: ChatCompletionRequest, forced_model_ty
             model_type = "strong"
         elif "lite" in request.model.lower():
             model_type = "weak"
-            
+
     # Track whether ownership of temp_files has been transferred to streaming generator
     temp_files_transferred = False
-    
+
     try:
         # Support OpenAI-compatible streaming
         if request.stream:
@@ -498,7 +506,7 @@ async def handle_chat_completion(request: ChatCompletionRequest, forced_model_ty
                 stream_response_generator(transcript, model_type, request.model, files=temp_files),
                 media_type="text/event-stream"
             )
-            
+
         response_text = await send_prompt(transcript, model_type=model_type, files=temp_files)
 
         chat_id = f"chatcmpl-{uuid.uuid4()}"
@@ -557,9 +565,9 @@ def list_models():
     return {
         "object": "list",
         "data": [
-            {"id": "gemini-2.0-flash-lite", "object": "model", "owned_by": "google"},
-            {"id": "gemini-2.0-flash", "object": "model", "owned_by": "google"},
-            {"id": "gemini-1.5-pro", "object": "model", "owned_by": "google"}
+            {"id": "gemini-3.1-flash-lite", "object": "model", "owned_by": "google"},
+            {"id": "gemini-3.5-flash", "object": "model", "owned_by": "google"},
+            {"id": "gemini-3.1-pro", "object": "model", "owned_by": "google"}
         ]
     }
 
@@ -705,7 +713,7 @@ async def stream_response_generator(prompt: str, model_type: str, model_name: st
             }
             yield f"data: {json.dumps(chunk)}\n\n"
             await asyncio.sleep(0.015)
-            
+
         final_chunk = {
             "id": chat_id,
             "object": "chat.completion.chunk",
@@ -785,6 +793,6 @@ def start_server():
     """
     host = get_config("server", "host") or "127.0.0.1"
     port = get_config("server", "port") or 4747
-    
+
     print(f" [>] " + t(f"Starting Local API Gateway on http://{host}:{port} ...", f"Yerel API Geçidi http://{host}:{port} adresinde başlatılıyor..."))
     uvicorn.run(app, host=host, port=port, log_level="info")
